@@ -1,6 +1,7 @@
 package com.tomee.helloworld.jaxrs;
 
 import com.tomee.helloworld.ejb.EJBSingletonService;
+import com.tomee.helloworld.ejb.EJBTransactionService;
 import com.tomee.helloworld.jaxb.JAXBGreeting;
 import com.tomee.helloworld.cdi.PojoService;
 import org.slf4j.Logger;
@@ -23,6 +24,9 @@ public class JAXRSResource {
 
     @Inject
     private PojoService pojoService;
+
+    @Inject
+    private EJBTransactionService ejbTransactionService;
 
     @GET
     @Path("/ping/{name}")
@@ -73,6 +77,17 @@ public class JAXRSResource {
 
         pojoService.setGreeting(greeting);
         return greeting;
+    }
+
+    @POST
+    @Path("/jpa")
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public String jpaPersist(JAXBGreeting jaxbGreeting) {
+
+        ejbTransactionService.addGreeting(jaxbGreeting);
+        return jaxbGreeting.toString();
+
     }
 }
 
