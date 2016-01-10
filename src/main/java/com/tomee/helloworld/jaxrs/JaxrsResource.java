@@ -1,8 +1,8 @@
-package com.tomee.helloworld.resource;
+package com.tomee.helloworld.jaxrs;
 
-import com.tomee.helloworld.bean.Greeting;
-import com.tomee.helloworld.service.PojoService;
-import com.tomee.helloworld.service.SingletonService;
+import com.tomee.helloworld.ejb.EJBSingletonService;
+import com.tomee.helloworld.jaxb.JAXBGreeting;
+import com.tomee.helloworld.cdi.PojoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,12 +14,12 @@ import javax.ws.rs.core.MediaType;
  * Created by valerie on 12/28/15.
  */
 @Path("/hello")
-public class HelloWorldResource {
+public class JAXRSResource {
 
-    private static final Logger logger = LoggerFactory.getLogger(HelloWorldResource.class);
+    private static final Logger logger = LoggerFactory.getLogger(JAXRSResource.class);
 
     @Inject
-    private SingletonService singletonService;
+    private EJBSingletonService ejbSingletonService;
 
     @Inject
     private PojoService pojoService;
@@ -35,9 +35,10 @@ public class HelloWorldResource {
     @Path("/jaxrs")
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public String jaxRs(Greeting greeting) {
+    public String jaxRs(JAXBGreeting jaxbGreeting) {
 
-        return greeting.toString();
+        logger.info("----------------REST JAXR Service [{}]!!!----------------",jaxbGreeting);
+        return jaxbGreeting.toString();
     }
 
     @GET
@@ -45,7 +46,7 @@ public class HelloWorldResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String getSingleton() {
 
-        return singletonService.getGreeting();
+        return ejbSingletonService.getGreeting();
     }
 
     @POST
@@ -53,7 +54,7 @@ public class HelloWorldResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String postSingleton(@PathParam("greeting") String greeting) {
 
-        singletonService.setGreeting(greeting);
+        ejbSingletonService.setGreeting(greeting);
         return greeting;
     }
 

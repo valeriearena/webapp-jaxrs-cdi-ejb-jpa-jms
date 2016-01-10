@@ -1,20 +1,20 @@
-package com.tomee.helloworld.bean;
+package com.tomee.helloworld.jaxb;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "Greeting")
-public class Greeting {
-    private String id;
+@XmlRootElement(name="greeting")
+public class JAXBGreeting {
+    private String expression;
     private String name;
     private String city;
     private String state;
 
-    public String getId() {
-        return id;
+    public String getExpression() {
+        return expression;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setExpression(String expression) {
+        this.expression = expression;
     }
 
     public String getName() {
@@ -43,8 +43,8 @@ public class Greeting {
 
     @Override
     public String toString() {
-        return "Greeting{" +
-                "id='" + id + '\'' +
+        return "greeting{" +
+                "expression='" + expression + '\'' +
                 ", name='" + name + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +

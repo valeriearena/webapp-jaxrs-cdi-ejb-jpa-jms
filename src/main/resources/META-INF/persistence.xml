@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+<persistence-unit name="helloworld" transaction-type="JTA">
+    <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+    <jta-data-source>HelloworldMySQL</jta-data-source>
+    <properties>
+        <property name="openjpa.Log" value="DefaultLevel=TRACE,SQL=TRACE"/>
+    </properties>
+</persistence-unit>
+
+</persistence>
