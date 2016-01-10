@@ -2,8 +2,8 @@ package com.tomee.helloworld.bean;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "Person")
-public class Person {
+@XmlRootElement(name = "Greeting")
+public class Greeting {
     private String id;
     private String name;
     private String city;
@@ -43,7 +43,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "Greeting{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", city='" + city + '\'' +

@@ -1,23 +1,28 @@
 package com.tomee.helloworld.resource;
 
-import com.tomee.helloworld.bean.Person;
+import com.tomee.helloworld.bean.Greeting;
+import com.tomee.helloworld.service.PojoService;
+import com.tomee.helloworld.service.SingletonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Consumes;
+import javax.inject.Inject;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.logging.Logger;
 
 /**
  * Created by valerie on 12/28/15.
  */
-@Path("/hi")
+@Path("/hello")
 public class HelloWorldResource {
-    private static final Logger logger = Logger.getLogger(HelloWorldResource.class.getName());
 
+    private static final Logger logger = LoggerFactory.getLogger(HelloWorldResource.class);
+
+    @Inject
+    private SingletonService singletonService;
+
+    @Inject
+    private PojoService pojoService;
 
     @GET
     @Path("/ping/{name}")
@@ -26,27 +31,47 @@ public class HelloWorldResource {
         return "pong " + name;
     }
 
-    @Path("/xml")
     @POST
-    @Consumes(MediaType.APPLICATION_XML)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String postXml(Person person) {
+    @Path("/jaxrs")
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public String jaxRs(Greeting greeting) {
 
-        logger.info(person.toString());
-
-        return person.toString();
+        return greeting.toString();
     }
 
-    @Path("/json")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
+    @GET
+    @Path("/singleton")
     @Produces(MediaType.TEXT_PLAIN)
-    public String postJson(Person person) {
+    public String getSingleton() {
 
-        logger.info(person.toString());
-
-        return person.toString();
+        return singletonService.getGreeting();
     }
 
+    @POST
+    @Path("/singleton/{greeting}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String postSingleton(@PathParam("greeting") String greeting) {
+
+        singletonService.setGreeting(greeting);
+        return greeting;
+    }
+
+    @GET
+    @Path("/pojo")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getPojo() {
+
+        return pojoService.getGreeting();
+    }
+
+    @POST
+    @Path("/pojo/{greeting}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String postPojo(@PathParam("greeting") String greeting) {
+
+        pojoService.setGreeting(greeting);
+        return greeting;
+    }
 }
 
