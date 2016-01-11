@@ -10,4 +10,13 @@
     </properties>
 </persistence-unit>
 
+<persistence-unit name="helloworldTest" transaction-type="JTA">
+     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+     <properties>
+         <property name="openjpa.InitializeEagerly" value="true"/>
+         <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='drop,add')"/>
+         <property name="openjpa.Log" value="DefaultLevel=INFO,SQL=INFO"/>
+     </properties>
+</persistence-unit>
+
 </persistence>

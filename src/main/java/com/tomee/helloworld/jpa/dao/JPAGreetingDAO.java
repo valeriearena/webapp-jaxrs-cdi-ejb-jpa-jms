@@ -15,23 +15,30 @@ public class JPAGreetingDAO {
     private static final Logger logger = LoggerFactory.getLogger(JPAGreetingDAO.class);
 
     @PersistenceContext
-    private EntityManager em;
+    private EntityManager entityManager;
 
     public void persist(JPAGreetingEntity jpaGreetingEntity){
-        em.persist(jpaGreetingEntity);
+        entityManager.persist(jpaGreetingEntity);
     }
 
     public JPAGreetingEntity find(Long id){
 
-        return em.find(JPAGreetingEntity.class, id);
+        return entityManager.find(JPAGreetingEntity.class, id);
     }
 
     public JPAGreetingEntity update(JPAGreetingEntity jpaGreetingEntity){
-        return em.merge(jpaGreetingEntity);
+        return entityManager.merge(jpaGreetingEntity);
     }
 
     public void delete(Long id){
-        em.remove(id);
+        entityManager.remove(id);
     }
 
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 }

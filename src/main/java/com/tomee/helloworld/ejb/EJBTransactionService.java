@@ -21,6 +21,7 @@ import java.util.List;
 @TransactionAttribute(value= TransactionAttributeType.REQUIRED)
 public class EJBTransactionService {
 
+
     private static final Logger logger = LoggerFactory.getLogger(EJBTransactionService.class);
 
     @Inject

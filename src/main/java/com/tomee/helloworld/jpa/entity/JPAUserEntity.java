@@ -28,7 +28,7 @@ public class JPAUserEntity {
 
     @ManyToOne(fetch=FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="greeting_id")
-    private JPAGreetingEntity jpaGreetingEntity;
+    private JPAGreetingEntity jpaGreetingEntity = new JPAGreetingEntity();
 
     public Long getId() {
         return id;

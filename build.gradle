@@ -6,9 +6,15 @@ repositories {
 }
 
 dependencies {
+
+    compile 'org.slf4j:slf4j-api:1.7.13'
+
     providedCompile 'javax:javaee-api:6.0'
     providedCompile 'org.apache.openejb:tomee-plus-webapp:1.7.3'
-    compile 'org.slf4j:slf4j-api:1.7.13'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-all:1.9.5'
+
 }
 
 war {

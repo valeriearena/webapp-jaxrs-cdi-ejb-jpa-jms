@@ -17,27 +17,35 @@ public class JPAUserDAO {
     private static final Logger logger = LoggerFactory.getLogger(JPAUserDAO.class);
 
     @PersistenceContext
-    private EntityManager em;
+    private EntityManager entityManager;
 
     public void persist(JPAUserEntity jpaUserEntity){
-        em.persist(jpaUserEntity);
+        entityManager.persist(jpaUserEntity);
     }
 
     public JPAUserEntity find(Long id){
 
-        return em.find(JPAUserEntity.class, id);
+        return entityManager.find(JPAUserEntity.class, id);
     }
 
     public JPAUserEntity update(JPAUserEntity jpaUserEntity){
-        return em.merge(jpaUserEntity);
+        return entityManager.merge(jpaUserEntity);
     }
 
     public void delete(Long id){
-        em.remove(id);
+        entityManager.remove(id);
     }
 
     public List<JPAUserEntity> findAll() {
-        TypedQuery<JPAUserEntity> query  = em.createNamedQuery("JPAUserEntity.findAll", JPAUserEntity.class);
+        TypedQuery<JPAUserEntity> query  = entityManager.createNamedQuery("JPAUserEntity.findAll", JPAUserEntity.class);
         return query.getResultList();
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 }
