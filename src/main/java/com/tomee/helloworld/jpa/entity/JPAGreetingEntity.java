@@ -1,6 +1,7 @@
 package com.tomee.helloworld.jpa.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by valerie on 1/10/16.
@@ -10,21 +11,21 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name ="Greeting.findAll", query = "SELECT g FROM JPAGreetingEntity g")
 })
-public class JPAGreetingEntity {
+public class JPAGreetingEntity implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private long id;
+    private Long id;
 
     @Column
     private String expression;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -34,5 +35,13 @@ public class JPAGreetingEntity {
 
     public void setExpression(String expression) {
         this.expression = expression;
+    }
+
+    @Override
+    public String toString() {
+        return "JPAGreetingEntity{" +
+                "id=" + id +
+                ", expression='" + expression + '\'' +
+                '}';
     }
 }

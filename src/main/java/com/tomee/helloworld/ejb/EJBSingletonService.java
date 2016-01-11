@@ -13,6 +13,7 @@ import javax.ejb.Singleton;
 public class EJBSingletonService {
 
     private static final Logger logger = LoggerFactory.getLogger(EJBSingletonService.class);
+
     private String greeting = "SINGLETON HELLO";
 
     public void setGreeting(String greeting){

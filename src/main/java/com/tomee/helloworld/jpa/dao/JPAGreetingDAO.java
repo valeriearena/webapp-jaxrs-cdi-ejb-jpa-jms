@@ -17,20 +17,20 @@ public class JPAGreetingDAO {
     @PersistenceContext
     private EntityManager em;
 
-    public void persist(JPAGreetingEntity JPAGreetingEntity){
-        em.persist(JPAGreetingEntity);
+    public void persist(JPAGreetingEntity jpaGreetingEntity){
+        em.persist(jpaGreetingEntity);
     }
 
-    public JPAGreetingEntity find(Integer id){
+    public JPAGreetingEntity find(Long id){
 
         return em.find(JPAGreetingEntity.class, id);
     }
 
-    public JPAGreetingEntity update(JPAGreetingEntity JPAGreetingEntity){
-        return em.merge(JPAGreetingEntity);
+    public JPAGreetingEntity update(JPAGreetingEntity jpaGreetingEntity){
+        return em.merge(jpaGreetingEntity);
     }
 
-    public void delete(Integer id){
+    public void delete(Long id){
         em.remove(id);
     }
 

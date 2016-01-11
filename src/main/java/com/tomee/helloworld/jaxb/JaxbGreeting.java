@@ -3,11 +3,30 @@ package com.tomee.helloworld.jaxb;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="greeting")
-public class JAXBGreeting {
+public class JAXBGreeting{
+
+    private Long greetingId;
+    private Long userId;
     private String expression;
     private String name;
     private String city;
     private String state;
+
+    public Long getGreetingId() {
+        return greetingId;
+    }
+
+    public void setGreetingId(Long greetingId) {
+        this.greetingId = greetingId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public String getExpression() {
         return expression;
@@ -41,13 +60,5 @@ public class JAXBGreeting {
         this.state = state;
     }
 
-    @Override
-    public String toString() {
-        return "greeting{" +
-                "expression='" + expression + '\'' +
-                ", name='" + name + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                '}';
-    }
+
 }

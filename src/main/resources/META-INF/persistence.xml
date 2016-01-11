@@ -5,8 +5,8 @@
     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
     <properties>
         <property name="openjpa.InitializeEagerly" value="true"/>
-        <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='deleteTableContents,drop,add')"/>
-        <property name="openjpa.Log" value="DefaultLevel=TRACE,SQL=TRACE"/>
+        <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='drop,add')"/>
+        <property name="openjpa.Log" value="DefaultLevel=INFO,SQL=INFO"/>
     </properties>
 </persistence-unit>
 

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 public class PojoService {
 
     private static final Logger logger = LoggerFactory.getLogger(PojoService.class);
+
     private String greeting = "POJO HELLO";
 
     public void setGreeting(String greeting){
