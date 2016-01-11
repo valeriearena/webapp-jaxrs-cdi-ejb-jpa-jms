@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 /**
  * Created by valerie on 1/11/16.
@@ -32,5 +34,10 @@ public class JPAUserDAO {
 
     public void delete(Long id){
         em.remove(id);
+    }
+
+    public List<JPAUserEntity> findAll() {
+        TypedQuery<JPAUserEntity> query  = em.createNamedQuery("JPAUserEntity.findAll", JPAUserEntity.class);
+        return query.getResultList();
     }
 }

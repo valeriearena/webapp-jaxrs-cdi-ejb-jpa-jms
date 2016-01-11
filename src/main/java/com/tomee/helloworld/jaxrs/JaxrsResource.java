@@ -10,8 +10,10 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * Created by valerie on 12/28/15.
@@ -143,6 +145,18 @@ public class JAXRSResource {
         JAXBGreeting jaxbGreeting = ejbTransactionService.getUser(id);
         return Response.status(Response.Status.OK).entity(jaxbGreeting).build();
     }
+
+    @GET
+    @Path("/getAll")
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Response getAll() {
+
+        List<JAXBGreeting> greetingList = ejbTransactionService.findAll();
+
+        GenericEntity<List<JAXBGreeting>> list = new GenericEntity<List<JAXBGreeting>>(greetingList) {};
+        return Response.ok(list).build();
+    }
+
 
     @POST
     @Path("/jms")

@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity
 @Table(name="greeting")
 @NamedQueries({
-        @NamedQuery(name ="Greeting.findAll", query = "SELECT g FROM JPAGreetingEntity g")
+        @NamedQuery(name ="JPAGreetingEntity.findAll", query = "SELECT g FROM JPAGreetingEntity g")
 })
 public class JPAGreetingEntity implements Serializable{
 

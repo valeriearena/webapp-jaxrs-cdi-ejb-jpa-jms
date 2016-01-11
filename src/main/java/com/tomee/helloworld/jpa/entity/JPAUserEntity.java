@@ -7,6 +7,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="user")
+@NamedQueries({
+        @NamedQuery(name ="JPAUserEntity.findAll", query = "SELECT u FROM JPAUserEntity u")
+})
 public class JPAUserEntity {
 
     @Id

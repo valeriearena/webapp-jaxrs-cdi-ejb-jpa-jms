@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.*;
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by valerie on 1/10/16.
@@ -141,6 +143,31 @@ public class EJBTransactionService {
 
         return jaxbGreeting;
     }
+
+    public List<JAXBGreeting> findAll(){
+
+        List<JPAUserEntity> jpaUserEntityList = jpaUserDAO.findAll();
+
+        JAXBGreeting jaxbGreeting = null;
+        List<JAXBGreeting> jaxbGreetingsList = new ArrayList<>();
+
+        for(JPAUserEntity jpaUserEntity:jpaUserEntityList){
+            jaxbGreeting = new JAXBGreeting();
+
+            jaxbGreeting.setGreetingId(jpaUserEntity.getJpaGreetingEntity().getId());
+            jaxbGreeting.setExpression(jpaUserEntity.getJpaGreetingEntity().getExpression());
+
+            jaxbGreeting.setUserId(jpaUserEntity.getId());
+            jaxbGreeting.setName(jpaUserEntity.getName());
+            jaxbGreeting.setCity(jaxbGreeting.getCity());
+            jaxbGreeting.setState(jpaUserEntity.getState());
+            jaxbGreetingsList.add(jaxbGreeting);
+        }
+
+        return jaxbGreetingsList;
+    }
+
+
 
 
 }
