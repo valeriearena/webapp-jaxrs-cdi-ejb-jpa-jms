@@ -95,7 +95,7 @@ public class JAXRSResource {
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Response addSalutation(JAXBHelloWorld jaxbHelloWorld) {
 
-        ejbTransactionService.addGreeting(jaxbHelloWorld);
+        ejbTransactionService.addSalutation(jaxbHelloWorld);
         return Response.status(Response.Status.OK).build();
     }
 
@@ -105,7 +105,7 @@ public class JAXRSResource {
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Response updateSalutation(JAXBHelloWorld jaxbHelloWorld) {
 
-        ejbTransactionService.updateGreeting(jaxbHelloWorld);
+        ejbTransactionService.updateSalutation(jaxbHelloWorld);
         return Response.status(Response.Status.OK).build();
     }
 
@@ -114,7 +114,7 @@ public class JAXRSResource {
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Response getSalutation(@PathParam("id") Long id) {
 
-        JAXBHelloWorld jaxbHelloWorld = ejbTransactionService.getGreeting(id);
+        JAXBHelloWorld jaxbHelloWorld = ejbTransactionService.getSalutation(id);
         return Response.status(Response.Status.OK).entity(jaxbHelloWorld).build();
     }
 
@@ -124,7 +124,7 @@ public class JAXRSResource {
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Response addTechnology(JAXBHelloWorld jaxbHelloWorld) {
 
-        ejbTransactionService.addUser(jaxbHelloWorld);
+        ejbTransactionService.addTechnology(jaxbHelloWorld);
         return Response.status(Response.Status.OK).build();
     }
 
@@ -134,16 +134,38 @@ public class JAXRSResource {
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Response addTechnologyCascadePersist(JAXBHelloWorld jaxbHelloWorld) {
 
-        ejbTransactionService.addUserCascadePersist(jaxbHelloWorld);
+        ejbTransactionService.addTechnologyCascadePersist(jaxbHelloWorld);
         return Response.status(Response.Status.OK).build();
     }
+
+    @POST
+    @Path("/updateTechnology")
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Response updateTechnology(JAXBHelloWorld jaxbHelloWorld) {
+
+        ejbTransactionService.updateTechnology(jaxbHelloWorld);
+        return Response.status(Response.Status.OK).build();
+    }
+
+
+    @POST
+    @Path("/updateTechnologyCascadeUpdate")
+    @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Response updateTechnologyCascadeUpdate(JAXBHelloWorld jaxbHelloWorld) {
+
+        ejbTransactionService.updateTechnologyCascadeUpdate(jaxbHelloWorld);
+        return Response.status(Response.Status.OK).build();
+    }
+
 
     @GET
     @Path("/getTechnology/{id}")
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Response getTechnology(@PathParam("id") Long id) {
 
-        JAXBHelloWorld jaxbHelloWorld = ejbTransactionService.getUser(id);
+        JAXBHelloWorld jaxbHelloWorld = ejbTransactionService.getTechnology(id);
         return Response.status(Response.Status.OK).entity(jaxbHelloWorld).build();
     }
 

@@ -28,7 +28,7 @@ public class EJBTransactionService {
     private JPATechnologyDAO jpaTechnologyDAO;
 
 
-    public void addGreeting(JAXBHelloWorld jaxbHelloWorld){
+    public void addSalutation(JAXBHelloWorld jaxbHelloWorld){
 
         logger.log(Level.FINE,"----------------PERSIST SALUTATION [{0}]!!!----------------", jaxbHelloWorld);
 
@@ -39,7 +39,7 @@ public class EJBTransactionService {
 
     }
 
-    public void updateGreeting(JAXBHelloWorld jaxbHelloWorld){
+    public void updateSalutation(JAXBHelloWorld jaxbHelloWorld){
 
         logger.log(Level.FINE, "----------------UPDATE SALUTATION [{0}]!!!----------------", jaxbHelloWorld);
 
@@ -50,7 +50,7 @@ public class EJBTransactionService {
 
     }
 
-    public JAXBHelloWorld getGreeting(Long id){
+    public JAXBHelloWorld getSalutation(Long id){
 
         JPASalutationEntity jpaSalutationEntity = jpaSalutationDAO.find(id);
 
@@ -63,7 +63,7 @@ public class EJBTransactionService {
         return jaxbHelloWorld;
     }
 
-    public void addUser(JAXBHelloWorld jaxbHelloWorld){
+    public void addTechnology(JAXBHelloWorld jaxbHelloWorld){
 
         logger.log(Level.FINE, "----------------PERSIST TECHNOLOGY and SALUTATION SEPARATELY [{0}]!!!----------------", jaxbHelloWorld);
 
@@ -71,15 +71,15 @@ public class EJBTransactionService {
         jpaSalutationEntity.setSalutation(jaxbHelloWorld.getSalutation());
 
         JPATechnologyEntity jpaTechnologyEntity = new JPATechnologyEntity();
-        jpaTechnologyEntity.setTechnologyName(jaxbHelloWorld.getTechnology());
-        jpaTechnologyEntity.setTechnologyDescription(jaxbHelloWorld.getDescription());
+        jpaTechnologyEntity.setTechnology(jaxbHelloWorld.getTechnology());
+        jpaTechnologyEntity.setDescription(jaxbHelloWorld.getDescription());
 
         jpaSalutationDAO.persist(jpaSalutationEntity);
         jpaTechnologyDAO.persist(jpaTechnologyEntity);
 
     }
 
-    public void addUserCascadePersist(JAXBHelloWorld jaxbHelloWorld){
+    public void addTechnologyCascadePersist(JAXBHelloWorld jaxbHelloWorld){
 
         logger.log(Level.FINE, "----------------PERSIST TECHNOLOGY CASCADE PERSIST TO SALUTATION [{0}]!!!----------------", jaxbHelloWorld);
 
@@ -87,8 +87,8 @@ public class EJBTransactionService {
         jpaSalutationEntity.setSalutation(jaxbHelloWorld.getSalutation());
 
         JPATechnologyEntity jpaTechnologyEntity = new JPATechnologyEntity();
-        jpaTechnologyEntity.setTechnologyName(jaxbHelloWorld.getTechnology());
-        jpaTechnologyEntity.setTechnologyDescription(jaxbHelloWorld.getDescription());
+        jpaTechnologyEntity.setTechnology(jaxbHelloWorld.getTechnology());
+        jpaTechnologyEntity.setDescription(jaxbHelloWorld.getDescription());
 
         jpaTechnologyEntity.setJpaSalutationEntity(jpaSalutationEntity);
 
@@ -96,33 +96,33 @@ public class EJBTransactionService {
 
     }
 
-    public void updateUser(JAXBHelloWorld jaxbHelloWorld){
+    public void updateTechnology(JAXBHelloWorld jaxbHelloWorld){
 
         logger.log(Level.FINE, "----------------UPDATE TECHNOLOGY [{0}]!!!----------------", jaxbHelloWorld);
 
         JPATechnologyEntity jpaTechnologyEntity = jpaTechnologyDAO.find(jaxbHelloWorld.getTechnologyId());
 
-        jpaTechnologyEntity.setTechnologyName(jaxbHelloWorld.getTechnology());
-        jpaTechnologyEntity.setTechnologyDescription(jaxbHelloWorld.getDescription());
+        jpaTechnologyEntity.setTechnology(jaxbHelloWorld.getTechnology());
+        jpaTechnologyEntity.setDescription(jaxbHelloWorld.getDescription());
 
         jpaTechnologyDAO.update(jpaTechnologyEntity);
     }
 
-    public void updateUserCascadeUpdate(JAXBHelloWorld jaxbHelloWorld){
+    public void updateTechnologyCascadeUpdate(JAXBHelloWorld jaxbHelloWorld){
 
         logger.log(Level.FINE, "----------------UPDATE TECHNOLOGY CASCADE UPDATE TO SALUTATION [{0}]!!!----------------", jaxbHelloWorld);
 
         JPATechnologyEntity jpaTechnologyEntity = jpaTechnologyDAO.find(jaxbHelloWorld.getTechnologyId());
 
-        jpaTechnologyEntity.setTechnologyName(jaxbHelloWorld.getTechnology());
-        jpaTechnologyEntity.setTechnologyDescription(jaxbHelloWorld.getDescription());
+        jpaTechnologyEntity.setTechnology(jaxbHelloWorld.getTechnology());
+        jpaTechnologyEntity.setDescription(jaxbHelloWorld.getDescription());
 
         jpaTechnologyEntity.getJpaSalutationEntity().setSalutation(jaxbHelloWorld.getSalutation());
 
         jpaTechnologyDAO.update(jpaTechnologyEntity);
     }
 
-    public JAXBHelloWorld getUser(Long id){
+    public JAXBHelloWorld getTechnology(Long id){
 
         JPATechnologyEntity jpaTechnologyEntity = jpaTechnologyDAO.find(id);
 
@@ -130,8 +130,8 @@ public class EJBTransactionService {
         jaxbHelloWorld.setSalutation(jpaTechnologyEntity.getJpaSalutationEntity().getSalutation());
         jaxbHelloWorld.setSalutationId(jpaTechnologyEntity.getJpaSalutationEntity().getId());
         jaxbHelloWorld.setTechnologyId(jpaTechnologyEntity.getId());
-        jaxbHelloWorld.setTechnology(jpaTechnologyEntity.getTechnologyName());
-        jaxbHelloWorld.setDescription(jpaTechnologyEntity.getTechnologyDescription());
+        jaxbHelloWorld.setTechnology(jpaTechnologyEntity.getTechnology());
+        jaxbHelloWorld.setDescription(jpaTechnologyEntity.getDescription());
 
         logger.log(Level.FINE, "----------------GET TECHNOLOGY [{0}]!!!----------------", jaxbHelloWorld);
 
@@ -152,8 +152,8 @@ public class EJBTransactionService {
             jaxbHelloWorld.setSalutation(jpaTechnologyEntity.getJpaSalutationEntity().getSalutation());
 
             jaxbHelloWorld.setTechnologyId(jpaTechnologyEntity.getId());
-            jaxbHelloWorld.setTechnology(jpaTechnologyEntity.getTechnologyName());
-            jaxbHelloWorld.setDescription(jpaTechnologyEntity.getTechnologyDescription());
+            jaxbHelloWorld.setTechnology(jpaTechnologyEntity.getTechnology());
+            jaxbHelloWorld.setDescription(jpaTechnologyEntity.getTechnology());
             jaxbGreetingsList.add(jaxbHelloWorld);
         }
 

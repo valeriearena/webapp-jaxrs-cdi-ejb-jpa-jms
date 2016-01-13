@@ -18,10 +18,10 @@ public class JPATechnologyEntity {
     private Long id;
 
     @Column
-    private String technologyName;
+    private String technology;
 
     @Column
-    private String technologyDescription;
+    private String description;
 
     @ManyToOne(fetch=FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="salutation_id")
@@ -35,20 +35,20 @@ public class JPATechnologyEntity {
         this.id = id;
     }
 
-    public String getTechnologyName() {
-        return technologyName;
+    public String getTechnology() {
+        return technology;
     }
 
-    public void setTechnologyName(String technologyName) {
-        this.technologyName = technologyName;
+    public void setTechnology(String technologyName) {
+        this.technology = technologyName;
     }
 
-    public String getTechnologyDescription() {
-        return technologyDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTechnologyDescription(String technologyDescription) {
-        this.technologyDescription = technologyDescription;
+    public void setDescription(String technologyDescription) {
+        this.description = technologyDescription;
     }
 
     public JPASalutationEntity getJpaSalutationEntity() {
@@ -63,8 +63,8 @@ public class JPATechnologyEntity {
     public String toString() {
         return "JPATechnologyEntity{" +
                 "id=" + id +
-                ", technologyName='" + technologyName + '\'' +
-                ", technologyDescription='" + technologyDescription + '\'' +
+                ", technologyName='" + technology + '\'' +
+                ", technologyDescription='" + description + '\'' +
                 ", jpaSalutationEntity=" + jpaSalutationEntity +
                 '}';
     }
