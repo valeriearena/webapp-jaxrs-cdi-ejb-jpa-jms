@@ -3,9 +3,6 @@ package com.tomee.helloworld.jpa.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by valerie on 1/10/16.
- */
 @Entity
 @Table(name="salutation")
 @NamedQueries({

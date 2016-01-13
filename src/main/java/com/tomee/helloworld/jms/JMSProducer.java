@@ -8,9 +8,6 @@ import javax.jms.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Created by valerie on 1/11/16.
- */
 @Stateless
 public class JMSProducer {
 

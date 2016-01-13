@@ -7,9 +7,6 @@ import org.slf4j.LoggerFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- * Created by valerie on 1/10/16.
- */
 public class JPASalutationDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(JPASalutationDAO.class);

@@ -1,6 +1,7 @@
 package com.tomee.helloworld.jaxrs;
 
 import com.tomee.helloworld.cdi.PojoService;
+import com.tomee.helloworld.ejb.EJBAsynchronous;
 import com.tomee.helloworld.ejb.EJBQueueService;
 import com.tomee.helloworld.ejb.EJBSingletonService;
 import com.tomee.helloworld.ejb.EJBTransactionService;
@@ -15,9 +16,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Created by valerie on 12/28/15.
- */
 @Path("/helloworld")
 public class JAXRSResource {
 
@@ -34,6 +32,9 @@ public class JAXRSResource {
 
     @Inject
     private EJBQueueService ejbQueueService;
+
+    @Inject
+    private EJBAsynchronous ejbAsynchronous;
 
     @GET
     @Path("/ping/{name}")
@@ -157,7 +158,6 @@ public class JAXRSResource {
         return Response.ok(list).build();
     }
 
-
     @POST
     @Path("/jms")
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
@@ -168,5 +168,13 @@ public class JAXRSResource {
         return Response.status(Response.Status.OK).build();
     }
 
+    @GET
+    @Path("/async")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String startAsync() {
+
+        ejbAsynchronous.loop();
+        return "ASYNC TASK KICKED OFF!!!";
+    }
 }
 

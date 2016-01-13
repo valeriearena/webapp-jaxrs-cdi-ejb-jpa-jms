@@ -10,9 +10,6 @@ import javax.jms.ObjectMessage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Created by valerie on 1/11/16.
- */
 @MessageDriven(activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
         @ActivationConfigProperty(propertyName = "destination", propertyValue = "helloworldQueue") })

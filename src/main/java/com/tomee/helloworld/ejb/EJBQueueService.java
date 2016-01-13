@@ -8,9 +8,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.logging.Logger;
 
-/**
- * Created by valerie on 1/11/16.
- */
 @Stateless
 public class EJBQueueService {
 

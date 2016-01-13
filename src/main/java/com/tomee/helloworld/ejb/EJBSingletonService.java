@@ -4,13 +4,8 @@ import javax.ejb.Singleton;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-/**
- * Created by valerie on 1/9/16.
- */
 @Singleton
 public class EJBSingletonService {
-
 
     private static final Logger logger = Logger.getLogger(EJBSingletonService.class.getName());
 

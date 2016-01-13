@@ -9,9 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-/**
- * Created by valerie on 1/11/16.
- */
 public class JPATechnologyDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(JPATechnologyDAO.class);
