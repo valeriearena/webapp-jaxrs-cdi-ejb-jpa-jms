@@ -1,13 +1,12 @@
 package com.tomee.helloworld.ejb;
 
-import com.tomee.helloworld.jaxb.JAXBGreeting;
+import com.tomee.helloworld.jaxb.JAXBHelloWorld;
 import com.tomee.helloworld.jms.JMSProducer;
-import com.tomee.helloworld.jpa.entity.JPAGreetingEntity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.tomee.helloworld.jpa.entity.JPASalutationEntity;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.logging.Logger;
 
 /**
  * Created by valerie on 1/11/16.
@@ -15,17 +14,17 @@ import javax.inject.Inject;
 @Stateless
 public class EJBQueueService {
 
-    private static final Logger logger = LoggerFactory.getLogger(EJBQueueService.class);
+    private static final Logger logger = Logger.getLogger(EJBQueueService.class.getName());
 
     @Inject
     private JMSProducer jmsProducer;
 
-    public void send(JAXBGreeting jaxbGreeting){
+    public void send(JAXBHelloWorld jaxbHelloWorld){
 
-        JPAGreetingEntity jpaGreetingEntity = new JPAGreetingEntity();
-        jpaGreetingEntity.setExpression(jaxbGreeting.getExpression());
+        JPASalutationEntity jpaSalutationEntity = new JPASalutationEntity();
+        jpaSalutationEntity.setSalutation(jaxbHelloWorld.getSalutation());
 
-        jmsProducer.send(jpaGreetingEntity);
+        jmsProducer.send(jpaSalutationEntity);
 
     }
 }

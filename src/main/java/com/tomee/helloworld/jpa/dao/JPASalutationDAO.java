@@ -1,6 +1,6 @@
 package com.tomee.helloworld.jpa.dao;
 
-import com.tomee.helloworld.jpa.entity.JPAGreetingEntity;
+import com.tomee.helloworld.jpa.entity.JPASalutationEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,24 +10,24 @@ import javax.persistence.PersistenceContext;
 /**
  * Created by valerie on 1/10/16.
  */
-public class JPAGreetingDAO {
+public class JPASalutationDAO {
 
-    private static final Logger logger = LoggerFactory.getLogger(JPAGreetingDAO.class);
+    private static final Logger logger = LoggerFactory.getLogger(JPASalutationDAO.class);
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void persist(JPAGreetingEntity jpaGreetingEntity){
-        entityManager.persist(jpaGreetingEntity);
+    public void persist(JPASalutationEntity jpaSalutationEntity){
+        entityManager.persist(jpaSalutationEntity);
     }
 
-    public JPAGreetingEntity find(Long id){
+    public JPASalutationEntity find(Long id){
 
-        return entityManager.find(JPAGreetingEntity.class, id);
+        return entityManager.find(JPASalutationEntity.class, id);
     }
 
-    public JPAGreetingEntity update(JPAGreetingEntity jpaGreetingEntity){
-        return entityManager.merge(jpaGreetingEntity);
+    public JPASalutationEntity update(JPASalutationEntity jpaSalutationEntity){
+        return entityManager.merge(jpaSalutationEntity);
     }
 
     public void delete(Long id){

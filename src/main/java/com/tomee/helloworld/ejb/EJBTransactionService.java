@@ -1,17 +1,17 @@
 package com.tomee.helloworld.ejb;
 
-import com.tomee.helloworld.jaxb.JAXBGreeting;
-import com.tomee.helloworld.jpa.dao.JPAGreetingDAO;
-import com.tomee.helloworld.jpa.dao.JPAUserDAO;
-import com.tomee.helloworld.jpa.entity.JPAGreetingEntity;
-import com.tomee.helloworld.jpa.entity.JPAUserEntity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.tomee.helloworld.jaxb.JAXBHelloWorld;
+import com.tomee.helloworld.jpa.dao.JPASalutationDAO;
+import com.tomee.helloworld.jpa.dao.JPATechnologyDAO;
+import com.tomee.helloworld.jpa.entity.JPASalutationEntity;
+import com.tomee.helloworld.jpa.entity.JPATechnologyEntity;
 
 import javax.ejb.*;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by valerie on 1/10/16.
@@ -22,153 +22,148 @@ import java.util.List;
 public class EJBTransactionService {
 
 
-    private static final Logger logger = LoggerFactory.getLogger(EJBTransactionService.class);
+    private static final Logger logger = Logger.getLogger(EJBSingletonService.class.getName());
 
     @Inject
-    private JPAGreetingDAO jpaGreetingDAO;
+    private JPASalutationDAO jpaSalutationDAO;
 
     @Inject
-    private JPAUserDAO jpaUserDAO;
+    private JPATechnologyDAO jpaTechnologyDAO;
 
 
-    public void addGreeting(JAXBGreeting jaxbGreeting){
+    public void addGreeting(JAXBHelloWorld jaxbHelloWorld){
 
-        logger.info("----------------PERSISTING GREETING [{}]!!!----------------", jaxbGreeting);
+        logger.log(Level.FINE,"----------------PERSIST SALUTATION [{0}]!!!----------------", jaxbHelloWorld);
 
-        JPAGreetingEntity jpaGreetingEntity = new JPAGreetingEntity();
-        jpaGreetingEntity.setExpression(jaxbGreeting.getExpression());
+        JPASalutationEntity jpaSalutationEntity = new JPASalutationEntity();
+        jpaSalutationEntity.setSalutation(jaxbHelloWorld.getSalutation());
 
-        jpaGreetingDAO.persist(jpaGreetingEntity);
-
-    }
-
-    public void updateGreeting(JAXBGreeting jaxbGreeting){
-
-        logger.info("----------------UPDATING GREETING [{}]!!!----------------", jaxbGreeting);
-
-        JPAGreetingEntity jpaGreetingEntity = jpaGreetingDAO.find(jaxbGreeting.getGreetingId());
-
-        jpaGreetingEntity.setExpression(jaxbGreeting.getExpression());
-        jpaGreetingDAO.update(jpaGreetingEntity);
+        jpaSalutationDAO.persist(jpaSalutationEntity);
 
     }
 
-    public JAXBGreeting getGreeting(Long id){
+    public void updateGreeting(JAXBHelloWorld jaxbHelloWorld){
 
-        JPAGreetingEntity jpaGreetingEntity = jpaGreetingDAO.find(id);
+        logger.log(Level.FINE, "----------------UPDATE SALUTATION [{0}]!!!----------------", jaxbHelloWorld);
 
-        JAXBGreeting jaxbGreeting = new JAXBGreeting();
-        jaxbGreeting.setExpression(jpaGreetingEntity.getExpression());
-        jaxbGreeting.setGreetingId(jpaGreetingEntity.getId());
+        JPASalutationEntity jpaSalutationEntity = jpaSalutationDAO.find(jaxbHelloWorld.getSalutationId());
 
-        logger.info("----------------GETTING GREETING [{}]!!!----------------", jaxbGreeting);
-
-        return jaxbGreeting;
-    }
-
-    public void addUser(JAXBGreeting jaxbGreeting){
-
-        logger.info("----------------PERSISTING USER and GREETING SEPARATELY [{}]!!!----------------", jaxbGreeting);
-
-        JPAGreetingEntity jpaGreetingEntity = new JPAGreetingEntity();
-        jpaGreetingEntity.setExpression(jaxbGreeting.getExpression());
-
-        JPAUserEntity jpaUserEntity = new JPAUserEntity();
-        jpaUserEntity.setName(jaxbGreeting.getName());
-        jpaUserEntity.setCity(jaxbGreeting.getCity());
-        jpaUserEntity.setState(jaxbGreeting.getState());
-
-        jpaGreetingDAO.persist(jpaGreetingEntity);
-        jpaUserDAO.persist(jpaUserEntity);
+        jpaSalutationEntity.setSalutation(jaxbHelloWorld.getSalutation());
+        jpaSalutationDAO.update(jpaSalutationEntity);
 
     }
 
-    public void addUserCascadePersist(JAXBGreeting jaxbGreeting){
+    public JAXBHelloWorld getGreeting(Long id){
 
-        logger.info("----------------PERSIST USER CASCADE PERSIST TO GREETING [{}]!!!----------------", jaxbGreeting);
+        JPASalutationEntity jpaSalutationEntity = jpaSalutationDAO.find(id);
 
-        JPAGreetingEntity jpaGreetingEntity = new JPAGreetingEntity();
-        jpaGreetingEntity.setExpression(jaxbGreeting.getExpression());
+        JAXBHelloWorld jaxbHelloWorld = new JAXBHelloWorld();
+        jaxbHelloWorld.setSalutation(jpaSalutationEntity.getSalutation());
+        jaxbHelloWorld.setSalutationId(jpaSalutationEntity.getId());
 
-        JPAUserEntity jpaUserEntity = new JPAUserEntity();
-        jpaUserEntity.setName(jaxbGreeting.getName());
-        jpaUserEntity.setCity(jaxbGreeting.getCity());
-        jpaUserEntity.setState(jaxbGreeting.getState());
+        logger.log(Level.FINE, "----------------GET SALUTATION [{}]!!!----------------", jaxbHelloWorld);
 
-        jpaUserEntity.setJpaGreetingEntity(jpaGreetingEntity);
+        return jaxbHelloWorld;
+    }
 
-        jpaUserDAO.persist(jpaUserEntity);
+    public void addUser(JAXBHelloWorld jaxbHelloWorld){
+
+        logger.log(Level.FINE, "----------------PERSIST TECHNOLOGY and SALUTATION SEPARATELY [{}]!!!----------------", jaxbHelloWorld);
+
+        JPASalutationEntity jpaSalutationEntity = new JPASalutationEntity();
+        jpaSalutationEntity.setSalutation(jaxbHelloWorld.getSalutation());
+
+        JPATechnologyEntity jpaTechnologyEntity = new JPATechnologyEntity();
+        jpaTechnologyEntity.setTechnologyName(jaxbHelloWorld.getTechnology());
+        jpaTechnologyEntity.setTechnologyDescription(jaxbHelloWorld.getDescription());
+
+        jpaSalutationDAO.persist(jpaSalutationEntity);
+        jpaTechnologyDAO.persist(jpaTechnologyEntity);
 
     }
 
-    public void updateUser(JAXBGreeting jaxbGreeting){
+    public void addUserCascadePersist(JAXBHelloWorld jaxbHelloWorld){
 
-        logger.info("----------------UPDATING USER [{}]!!!----------------", jaxbGreeting);
+        logger.log(Level.FINE, "----------------PERSIST TECHNOLOGY CASCADE PERSIST TO SALUTATION [{}]!!!----------------", jaxbHelloWorld);
 
-        JPAUserEntity jpaUserEntity = jpaUserDAO.find(jaxbGreeting.getUserId());
+        JPASalutationEntity jpaSalutationEntity = new JPASalutationEntity();
+        jpaSalutationEntity.setSalutation(jaxbHelloWorld.getSalutation());
 
-        jpaUserEntity.setName(jaxbGreeting.getName());
-        jpaUserEntity.setCity(jaxbGreeting.getCity());
-        jpaUserEntity.setState(jaxbGreeting.getState());
+        JPATechnologyEntity jpaTechnologyEntity = new JPATechnologyEntity();
+        jpaTechnologyEntity.setTechnologyName(jaxbHelloWorld.getTechnology());
+        jpaTechnologyEntity.setTechnologyDescription(jaxbHelloWorld.getDescription());
 
-        jpaUserDAO.update(jpaUserEntity);
+        jpaTechnologyEntity.setJpaSalutationEntity(jpaSalutationEntity);
+
+        jpaTechnologyDAO.persist(jpaTechnologyEntity);
+
     }
 
-    public void updateUserCascadeUpdate(JAXBGreeting jaxbGreeting){
+    public void updateUser(JAXBHelloWorld jaxbHelloWorld){
 
-        logger.info("----------------UPDATE USER CASCADE UPDATE TO GREETING [{}]!!!----------------", jaxbGreeting);
+        logger.log(Level.FINE, "----------------UPDATE TECHNOLOGY [{}]!!!----------------", jaxbHelloWorld);
 
-        JPAUserEntity jpaUserEntity = jpaUserDAO.find(jaxbGreeting.getUserId());
+        JPATechnologyEntity jpaTechnologyEntity = jpaTechnologyDAO.find(jaxbHelloWorld.getTechnologyId());
 
-        jpaUserEntity.setName(jaxbGreeting.getName());
-        jpaUserEntity.setCity(jaxbGreeting.getCity());
-        jpaUserEntity.setState(jaxbGreeting.getState());
-        jpaUserEntity.getJpaGreetingEntity().setExpression(jaxbGreeting.getExpression());
+        jpaTechnologyEntity.setTechnologyName(jaxbHelloWorld.getTechnology());
+        jpaTechnologyEntity.setTechnologyDescription(jaxbHelloWorld.getDescription());
 
-        jpaUserDAO.update(jpaUserEntity);
+        jpaTechnologyDAO.update(jpaTechnologyEntity);
     }
 
-    public JAXBGreeting getUser(Long id){
+    public void updateUserCascadeUpdate(JAXBHelloWorld jaxbHelloWorld){
 
-        JPAUserEntity jpaUserEntity = jpaUserDAO.find(id);
+        logger.log(Level.FINE, "----------------UPDATE TECHNOLOGY CASCADE UPDATE TO SALUTATION [{}]!!!----------------", jaxbHelloWorld);
 
-        JAXBGreeting jaxbGreeting = new JAXBGreeting();
-        jaxbGreeting.setExpression(jpaUserEntity.getJpaGreetingEntity().getExpression());
-        jaxbGreeting.setGreetingId(jpaUserEntity.getJpaGreetingEntity().getId());
-        jaxbGreeting.setUserId(jpaUserEntity.getId());
-        jaxbGreeting.setName(jpaUserEntity.getName());
-        jaxbGreeting.setCity(jpaUserEntity.getCity());
-        jpaUserEntity.setState(jpaUserEntity.getState());
+        JPATechnologyEntity jpaTechnologyEntity = jpaTechnologyDAO.find(jaxbHelloWorld.getTechnologyId());
 
-        logger.info("----------------GETTING USER [{}]!!!----------------", jaxbGreeting);
+        jpaTechnologyEntity.setTechnologyName(jaxbHelloWorld.getTechnology());
+        jpaTechnologyEntity.setTechnologyDescription(jaxbHelloWorld.getDescription());
 
-        return jaxbGreeting;
+        jpaTechnologyEntity.getJpaSalutationEntity().setSalutation(jaxbHelloWorld.getSalutation());
+
+        jpaTechnologyDAO.update(jpaTechnologyEntity);
     }
 
-    public List<JAXBGreeting> findAll(){
+    public JAXBHelloWorld getUser(Long id){
 
-        List<JPAUserEntity> jpaUserEntityList = jpaUserDAO.findAll();
+        JPATechnologyEntity jpaTechnologyEntity = jpaTechnologyDAO.find(id);
 
-        JAXBGreeting jaxbGreeting = null;
-        List<JAXBGreeting> jaxbGreetingsList = new ArrayList<>();
+        JAXBHelloWorld jaxbHelloWorld = new JAXBHelloWorld();
+        jaxbHelloWorld.setSalutation(jpaTechnologyEntity.getJpaSalutationEntity().getSalutation());
+        jaxbHelloWorld.setSalutationId(jpaTechnologyEntity.getJpaSalutationEntity().getId());
+        jaxbHelloWorld.setTechnologyId(jpaTechnologyEntity.getId());
+        jaxbHelloWorld.setTechnology(jpaTechnologyEntity.getTechnologyName());
+        jaxbHelloWorld.setDescription(jpaTechnologyEntity.getTechnologyDescription());
 
-        for(JPAUserEntity jpaUserEntity:jpaUserEntityList){
-            jaxbGreeting = new JAXBGreeting();
+        logger.log(Level.FINE, "----------------GET TECHNOLOGY [{}]!!!----------------", jaxbHelloWorld);
 
-            jaxbGreeting.setGreetingId(jpaUserEntity.getJpaGreetingEntity().getId());
-            jaxbGreeting.setExpression(jpaUserEntity.getJpaGreetingEntity().getExpression());
+        return jaxbHelloWorld;
+    }
 
-            jaxbGreeting.setUserId(jpaUserEntity.getId());
-            jaxbGreeting.setName(jpaUserEntity.getName());
-            jaxbGreeting.setCity(jaxbGreeting.getCity());
-            jaxbGreeting.setState(jpaUserEntity.getState());
-            jaxbGreetingsList.add(jaxbGreeting);
+    public List<JAXBHelloWorld> findAll(){
+
+        List<JPATechnologyEntity> jpaTechnologyEntityList = jpaTechnologyDAO.findAll();
+
+        JAXBHelloWorld jaxbHelloWorld = null;
+        List<JAXBHelloWorld> jaxbGreetingsList = new ArrayList<>();
+
+        for(JPATechnologyEntity jpaTechnologyEntity : jpaTechnologyEntityList){
+            jaxbHelloWorld = new JAXBHelloWorld();
+
+            jaxbHelloWorld.setSalutationId(jpaTechnologyEntity.getJpaSalutationEntity().getId());
+            jaxbHelloWorld.setSalutation(jpaTechnologyEntity.getJpaSalutationEntity().getSalutation());
+
+            jaxbHelloWorld.setTechnologyId(jpaTechnologyEntity.getId());
+            jaxbHelloWorld.setTechnology(jpaTechnologyEntity.getTechnologyName());
+            jaxbHelloWorld.setDescription(jpaTechnologyEntity.getTechnologyDescription());
+            jaxbGreetingsList.add(jaxbHelloWorld);
         }
+
+        logger.log(Level.FINE, "----------------GET ALL TECHNOLOGIES [{}]!!!----------------", jaxbGreetingsList.size());
 
         return jaxbGreetingsList;
     }
-
-
 
 
 }

@@ -4,9 +4,7 @@ import com.tomee.helloworld.cdi.PojoService;
 import com.tomee.helloworld.ejb.EJBQueueService;
 import com.tomee.helloworld.ejb.EJBSingletonService;
 import com.tomee.helloworld.ejb.EJBTransactionService;
-import com.tomee.helloworld.jaxb.JAXBGreeting;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.tomee.helloworld.jaxb.JAXBHelloWorld;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -14,14 +12,16 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by valerie on 12/28/15.
  */
-@Path("/hello")
+@Path("/helloworld")
 public class JAXRSResource {
 
-    private static final Logger logger = LoggerFactory.getLogger(JAXRSResource.class);
+    private static final Logger logger = Logger.getLogger(JAXRSResource.class.getName());
 
     @Inject
     private EJBSingletonService ejbSingletonService;
@@ -46,10 +46,10 @@ public class JAXRSResource {
     @Path("/jaxrs")
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public Response jaxRs(JAXBGreeting jaxbGreeting) {
+    public Response jaxRs(JAXBHelloWorld jaxbHelloWorld) {
 
-        logger.info("----------------REST JAXR Service [{}]!!!----------------",jaxbGreeting);
-        return Response.status(Response.Status.OK).entity(jaxbGreeting).build();
+        logger.log(Level.FINE,"----------------REST JAXRS Service [{0}]!!!----------------", jaxbHelloWorld);
+        return Response.status(Response.Status.OK).entity(jaxbHelloWorld).build();
     }
 
     @GET
@@ -57,16 +57,16 @@ public class JAXRSResource {
     @Produces(MediaType.TEXT_PLAIN)
     public Response getSingleton() {
 
-        ejbSingletonService.getGreeting();
+        ejbSingletonService.getSalutation();
         return Response.status(Response.Status.OK).build();
     }
 
     @POST
-    @Path("/singleton/{greeting}")
+    @Path("/singleton/{salutation}")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response postSingleton(@PathParam("greeting") String greeting) {
+    public Response postSingleton(@PathParam("salutation") String salutation) {
 
-        ejbSingletonService.setGreeting(greeting);
+        ejbSingletonService.setSalutation(salutation);
         return Response.status(Response.Status.OK).build();
     }
 
@@ -80,70 +80,70 @@ public class JAXRSResource {
     }
 
     @POST
-    @Path("/pojo/{greeting}")
+    @Path("/pojo/{salutation}")
     @Produces(MediaType.TEXT_PLAIN)
-    public Response postPojo(@PathParam("greeting") String greeting) {
+    public Response postPojo(@PathParam("salutation") String salutation) {
 
-        pojoService.setGreeting(greeting);
+        pojoService.setGreeting(salutation);
         return Response.status(Response.Status.OK).build();
     }
 
     @POST
-    @Path("/addGreeting")
+    @Path("/addSalutation")
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public Response addGreeting(JAXBGreeting jaxbGreeting) {
+    public Response addSalutation(JAXBHelloWorld jaxbHelloWorld) {
 
-        ejbTransactionService.addGreeting(jaxbGreeting);
+        ejbTransactionService.addGreeting(jaxbHelloWorld);
         return Response.status(Response.Status.OK).build();
     }
 
     @POST
-    @Path("/updateGreeting")
+    @Path("/updateSalutation")
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public Response updateGreeting(JAXBGreeting jaxbGreeting) {
+    public Response updateSalutation(JAXBHelloWorld jaxbHelloWorld) {
 
-        ejbTransactionService.updateGreeting(jaxbGreeting);
+        ejbTransactionService.updateGreeting(jaxbHelloWorld);
         return Response.status(Response.Status.OK).build();
     }
 
     @GET
-    @Path("/getGreeting/{id}")
+    @Path("/getSalutation/{id}")
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public Response getGreeting(@PathParam("id") Long id) {
+    public Response getSalutation(@PathParam("id") Long id) {
 
-        JAXBGreeting jaxbGreeting = ejbTransactionService.getGreeting(id);
-        return Response.status(Response.Status.OK).entity(jaxbGreeting).build();
+        JAXBHelloWorld jaxbHelloWorld = ejbTransactionService.getGreeting(id);
+        return Response.status(Response.Status.OK).entity(jaxbHelloWorld).build();
     }
 
     @POST
-    @Path("/addUser")
+    @Path("/addTechnology")
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public Response addUser(JAXBGreeting jaxbGreeting) {
+    public Response addTechnology(JAXBHelloWorld jaxbHelloWorld) {
 
-        ejbTransactionService.addUser(jaxbGreeting);
+        ejbTransactionService.addUser(jaxbHelloWorld);
         return Response.status(Response.Status.OK).build();
     }
 
     @POST
-    @Path("/addUserCascadePersist")
+    @Path("/addTechnologyCascadePersist")
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public Response addUserCascadePersist(JAXBGreeting jaxbGreeting) {
+    public Response addTechnologyCascadePersist(JAXBHelloWorld jaxbHelloWorld) {
 
-        ejbTransactionService.addUserCascadePersist(jaxbGreeting);
+        ejbTransactionService.addUserCascadePersist(jaxbHelloWorld);
         return Response.status(Response.Status.OK).build();
     }
 
     @GET
-    @Path("/getUser/{id}")
+    @Path("/getTechnology/{id}")
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public Response getUser(@PathParam("id") Long id) {
+    public Response getTechnology(@PathParam("id") Long id) {
 
-        JAXBGreeting jaxbGreeting = ejbTransactionService.getUser(id);
-        return Response.status(Response.Status.OK).entity(jaxbGreeting).build();
+        JAXBHelloWorld jaxbHelloWorld = ejbTransactionService.getUser(id);
+        return Response.status(Response.Status.OK).entity(jaxbHelloWorld).build();
     }
 
     @GET
@@ -151,9 +151,9 @@ public class JAXRSResource {
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Response getAll() {
 
-        List<JAXBGreeting> greetingList = ejbTransactionService.findAll();
+        List<JAXBHelloWorld> greetingList = ejbTransactionService.findAll();
 
-        GenericEntity<List<JAXBGreeting>> list = new GenericEntity<List<JAXBGreeting>>(greetingList) {};
+        GenericEntity<List<JAXBHelloWorld>> list = new GenericEntity<List<JAXBHelloWorld>>(greetingList) {};
         return Response.ok(list).build();
     }
 
@@ -162,9 +162,9 @@ public class JAXRSResource {
     @Path("/jms")
     @Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public Response jmsSend(JAXBGreeting jaxbGreeting) {
+    public Response jmsSend(JAXBHelloWorld jaxbHelloWorld) {
 
-        ejbQueueService.send(jaxbGreeting);
+        ejbQueueService.send(jaxbHelloWorld);
         return Response.status(Response.Status.OK).build();
     }
 

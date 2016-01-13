@@ -7,11 +7,11 @@ import java.io.Serializable;
  * Created by valerie on 1/10/16.
  */
 @Entity
-@Table(name="greeting")
+@Table(name="salutation")
 @NamedQueries({
-        @NamedQuery(name ="JPAGreetingEntity.findAll", query = "SELECT g FROM JPAGreetingEntity g")
+        @NamedQuery(name ="JPASalutationEntity.findAll", query = "SELECT s FROM JPASalutationEntity s")
 })
-public class JPAGreetingEntity implements Serializable{
+public class JPASalutationEntity implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class JPAGreetingEntity implements Serializable{
     private Long id;
 
     @Column
-    private String expression;
+    private String salutation;
 
     public Long getId() {
         return id;
@@ -29,19 +29,19 @@ public class JPAGreetingEntity implements Serializable{
         this.id = id;
     }
 
-    public String getExpression() {
-        return expression;
+    public String getSalutation() {
+        return salutation;
     }
 
-    public void setExpression(String expression) {
-        this.expression = expression;
+    public void setSalutation(String salutation) {
+        this.salutation = salutation;
     }
 
     @Override
     public String toString() {
-        return "JPAGreetingEntity{" +
+        return "JPASalutationEntity{" +
                 "id=" + id +
-                ", expression='" + expression + '\'' +
+                ", salutation='" + salutation + '\'' +
                 '}';
     }
 }

@@ -1,9 +1,8 @@
 package com.tomee.helloworld.ejb;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.ejb.Singleton;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -12,18 +11,19 @@ import javax.ejb.Singleton;
 @Singleton
 public class EJBSingletonService {
 
-    private static final Logger logger = LoggerFactory.getLogger(EJBSingletonService.class);
 
-    private String greeting = "SINGLETON HELLO";
+    private static final Logger logger = Logger.getLogger(EJBSingletonService.class.getName());
 
-    public void setGreeting(String greeting){
+    private String salutation = "SINGLETON HELLO";
 
-        logger.info("----------------SETTING EJBSingletonService [{}]!!!----------------", this.greeting);
-        this.greeting = greeting;
+    public void setSalutation(String salutation){
+
+        logger.log(Level.FINE,"----------------SET EJBSingletonService [{0}]!!!----------------", this.salutation);
+        this.salutation = salutation;
     }
 
-    public String getGreeting() {
-        logger.info("----------------GETTING EJBSingletonService [{}]!!!----------------", this.greeting);
-        return greeting;
+    public String getSalutation() {
+        logger.log(Level.FINE,"----------------GET EJBSingletonService [{0}]!!!----------------", this.salutation);
+        return salutation;
     }
 }
