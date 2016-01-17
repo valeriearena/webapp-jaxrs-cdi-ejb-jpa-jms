@@ -1,17 +1,26 @@
 apply plugin: 'java'
 apply plugin: 'war'
 
+
+
 repositories {
     mavenCentral()
 }
 
+
 dependencies {
 
-    providedCompile 'javax:javaee-api:6.0'
-    providedCompile 'org.apache.openejb:tomee-plus-webapp:1.7.3'
+    //providedCompile 'org.apache.openejb:tomee-plus-webapp:1.7.3'
+    //providedCompile 'javax:javaee-api:6.0'
+    providedCompile 'org.slf4j:slf4j-api:1.7.7'
+    providedCompile 'org.apache.openejb:javaee-api:6.0-6'
+    //providedCompile 'org.apache.openjpa:openjpa-all:2.1.1'
 
     testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-all:1.9.5'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile 'com.h2database:h2:1.4.189'
+    testRuntime 'org.apache.openejb:javaee-api:6.0-6'
+    testRuntime 'org.apache.openjpa:openjpa-all:2.4.0'
 
 }
 

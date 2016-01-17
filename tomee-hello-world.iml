@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module external.linked.project.id="tomee-hello-world" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="tomee-hello-world" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
-  <component name="FacetManager">
-    <facet type="web" name="Web Gradle : helloworld.war">
-      <configuration>
-        <descriptors>
-          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        </descriptors>
-        <webroots>
-          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
-        </webroots>
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/resources" />
-          <root url="file://$MODULE_DIR$/src/main/java" />
-        </sourceRoots>
-      </configuration>
-    </facet>
-  </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/build/classes/main" />
     <output-test url="file://$MODULE_DIR$/build/classes/test" />
@@ -30,6 +14,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: javax:javaee-web-api:6.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="org.slf4j:slf4j-api:1.7.7" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="org.apache.openejb:javaee-api:6.0-6" level="project" />
+    <orderEntry type="library" scope="TEST" name="junit:junit:4.12" level="project" />
+    <orderEntry type="library" scope="TEST" name="org.mockito:mockito-all:1.10.19" level="project" />
+    <orderEntry type="library" scope="TEST" name="com.h2database:h2:1.4.189" level="project" />
+    <orderEntry type="library" scope="TEST" name="org.apache.openjpa:openjpa-all:2.4.0" level="project" />
   </component>
 </module>

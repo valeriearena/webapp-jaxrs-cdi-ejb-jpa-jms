@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+<persistence-unit name="helloworldTest" transaction-type="RESOURCE_LOCAL">
+    <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+
+    <class>com.tomee.helloworld.jpa.entity.JPASalutationEntity</class>
+    <class>com.tomee.helloworld.jpa.entity.JPATechnologyEntity</class>
+
+    <properties>
+        <property name="openjpa.ConnectionDriverName" value="org.h2.Driver" />
+        <property name="openjpa.ConnectionURL" value="jdbc:h2:mem:helloworldDB" />
+        <property name="openjpa.InitializeEagerly" value="true"/>
+        <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='drop,add')"/>
+        <property name="openjpa.Log" value="DefaultLevel=TRACE,SQL=TRACE"/>
+        <property name="openjpa.ConnectionFactoryProperties" value="PrintParameters=true" />
+        <property name="openjpa.RuntimeUnenhancedClasses" value="warn"/>
+    </properties>
+</persistence-unit>
+
+</persistence>

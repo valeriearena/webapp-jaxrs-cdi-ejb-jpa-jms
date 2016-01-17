@@ -4,6 +4,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 /**
  * Created by valerie on 1/13/16.
  */
@@ -11,6 +14,7 @@ public class JPATechnologyDAOTest {
 
     @Before
     public void setUp() throws Exception {
+
 
     }
 
@@ -21,6 +25,8 @@ public class JPATechnologyDAOTest {
 
     @Test
     public void testPersist() throws Exception {
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("helloworldTest");
 
     }
 
