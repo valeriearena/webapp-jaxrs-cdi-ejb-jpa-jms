@@ -4,16 +4,18 @@ import com.tomee.helloworld.jpa.entity.JPATechnologyEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Stateless
 public class JPATechnologyDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(JPATechnologyDAO.class);
 
-    @PersistenceContext
+    @PersistenceContext(unitName="helloworld")
     private EntityManager entityManager;
 
     public void persist(JPATechnologyEntity jpaTechnologyEntity){

@@ -4,14 +4,16 @@ import com.tomee.helloworld.jpa.entity.JPASalutationEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+@Stateless
 public class JPASalutationDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(JPASalutationDAO.class);
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "helloworld")
     private EntityManager entityManager;
 
     public void persist(JPASalutationEntity jpaSalutationEntity){

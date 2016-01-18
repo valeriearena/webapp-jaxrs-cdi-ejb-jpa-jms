@@ -1,6 +1,7 @@
 package com.tomee.helloworld.jpa.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by valerie on 1/11/16.
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name ="JPATechnologyEntity.findAll", query = "SELECT t FROM JPATechnologyEntity t")
 })
-public class JPATechnologyEntity {
+public class JPATechnologyEntity implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
