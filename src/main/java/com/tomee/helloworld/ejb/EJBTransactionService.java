@@ -162,5 +162,19 @@ public class EJBTransactionService {
         return jaxbGreetingsList;
     }
 
+    public JPASalutationDAO getJpaSalutationDAO() {
+        return jpaSalutationDAO;
+    }
 
+    public void setJpaSalutationDAO(JPASalutationDAO jpaSalutationDAO) {
+        this.jpaSalutationDAO = jpaSalutationDAO;
+    }
+
+    public JPATechnologyDAO getJpaTechnologyDAO() {
+        return jpaTechnologyDAO;
+    }
+
+    public void setJpaTechnologyDAO(JPATechnologyDAO jpaTechnologyDAO) {
+        this.jpaTechnologyDAO = jpaTechnologyDAO;
+    }
 }
