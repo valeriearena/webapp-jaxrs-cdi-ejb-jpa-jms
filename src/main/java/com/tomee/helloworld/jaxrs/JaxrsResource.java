@@ -54,6 +54,15 @@ public class JAXRSResource {
     }
 
     @GET
+    @Path("/async")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String startAsync() {
+
+        ejbAsynchronous.loop();
+        return "ASYNC TASK KICKED OFF!!!";
+    }
+
+    @GET
     @Path("/singleton")
     @Produces(MediaType.TEXT_PLAIN)
     public Response getSingleton() {
@@ -190,13 +199,6 @@ public class JAXRSResource {
         return Response.status(Response.Status.OK).build();
     }
 
-    @GET
-    @Path("/async")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String startAsync() {
 
-        ejbAsynchronous.loop();
-        return "ASYNC TASK KICKED OFF!!!";
-    }
 }
 
