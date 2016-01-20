@@ -1,10 +1,7 @@
 package com.tomee.helloworld.jpa.dao;
 
 import com.tomee.helloworld.jpa.entity.JPASalutationEntity;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runners.MethodSorters;
 
 import javax.persistence.EntityManagerFactory;
@@ -20,17 +17,17 @@ import static org.junit.Assert.fail;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JPASalutationDAOTest {
 
-    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("helloworldTest");
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("helloworldH2");
 
     private static JPASalutationDAO jpaSalutationDAO = new JPASalutationDAO();
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeClass
+    public static void setUp() throws Exception {
         jpaSalutationDAO.setEntityManager(emf.createEntityManager());
     }
 
-    @After
-    public void tearDown() throws Exception {
+    @AfterClass
+    public static void tearDown() throws Exception {
         emf = null;
         jpaSalutationDAO = null;
     }
