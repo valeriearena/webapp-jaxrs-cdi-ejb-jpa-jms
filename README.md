@@ -17,6 +17,6 @@ Follow the Setup Steps and Execution Steps below.
 
 NOTE: 
 The EntityManagers in the DAOs (tomee-hello-world/src/main/java/com/tomee/helloworld/jpa/dao) are configured with H2 in memory database. 
-To configure the DAOS with MySQL, configure the EntityManagers with "helloworld". 
+To configure the DAOS with MySQL, configure the EntityManagers with "helloworldDB" (tomee-hello-world/src/main/resources/persistence.xml). 
 You will need to install MySQL. Use "localuser", "password" as the username and password. If you use something different, update the username and password in tomee.xml.
 
