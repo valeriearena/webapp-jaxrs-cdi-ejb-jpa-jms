@@ -3,6 +3,7 @@
 
     <persistence-unit name="helloworld" transaction-type="JTA">
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+        <jta-data-source>java:/HelloworldDB</jta-data-source>
 
         <class>com.tomee.helloworld.jpa.entity.JPASalutationEntity</class>
         <class>com.tomee.helloworld.jpa.entity.JPATechnologyEntity</class>
