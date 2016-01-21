@@ -4,6 +4,7 @@ TomEE Hello Worlds with JAX-RS, JAXB, CDI, EJB, JPA, and JMS.
 Follow the Setup Steps and Execution Steps below.
 
 *************** Setup Steps *************** 
+
 1. Download and install TomEE Plus: http://tomee.apache.org/index.html
 2. Clone the tomee-hello-world repo.
 3. Copy tomee-hello-world/setup/tomee.xml to TOMEE_HOME/conf.
