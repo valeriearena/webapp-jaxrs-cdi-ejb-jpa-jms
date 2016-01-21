@@ -15,7 +15,7 @@ public class JPATechnologyDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(JPATechnologyDAO.class);
 
-    @PersistenceContext(unitName="helloworld")
+    @PersistenceContext(unitName="helloworldH2")
     private EntityManager entityManager;
 
     public void persist(JPATechnologyEntity jpaTechnologyEntity){

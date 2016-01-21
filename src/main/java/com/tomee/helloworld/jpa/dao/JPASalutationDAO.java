@@ -13,7 +13,7 @@ public class JPASalutationDAO {
 
     private static final Logger logger = LoggerFactory.getLogger(JPASalutationDAO.class);
 
-    @PersistenceContext(unitName = "helloworld")
+    @PersistenceContext(unitName = "helloworldH2")
     private EntityManager entityManager;
 
     public void persist(JPASalutationEntity jpaSalutationEntity){

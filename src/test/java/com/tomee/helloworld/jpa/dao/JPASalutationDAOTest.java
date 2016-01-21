@@ -17,7 +17,7 @@ import static org.junit.Assert.fail;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class JPASalutationDAOTest {
 
-    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("helloworldH2");
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("helloworldH2Test");
 
     private static JPASalutationDAO jpaSalutationDAO = new JPASalutationDAO();
 
