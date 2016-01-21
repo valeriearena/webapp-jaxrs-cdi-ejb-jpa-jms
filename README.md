@@ -15,9 +15,8 @@ Follow the Setup Steps and Execution Steps below.
 8. Copy tomee-hello-world/build/libs/demo.war to TOMEE_HOME/webapps.
 9. Tail TOMEE_HOME/logs/catalina.out.
 
-NOTE: The EntityManagers in the DAOs (tomee-hello-world/src/main/java/com/tomee/helloworld/jpa/dao) are configured with H2 in memory database. 
-
+NOTE: 
+The EntityManagers in the DAOs (tomee-hello-world/src/main/java/com/tomee/helloworld/jpa/dao) are configured with H2 in memory database. 
 To configure the DAOS with MySQL, configure the EntityManagers with "helloworld". 
-
 You will need to install MySQL. Use "localuser", "password" as the username and password. If you use something different, update the username and password in tomee.xml.
 
