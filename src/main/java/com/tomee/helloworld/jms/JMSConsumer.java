@@ -19,6 +19,9 @@ public class JMSConsumer implements MessageListener {
 
     public void onMessage(Message message) {
 
+
+        try{Thread.sleep(60000);}catch(Exception e){}
+
         JPASalutationEntity jpaSalutationEntity = null;
         try {
             ObjectMessage objectMessage = (ObjectMessage)message;
