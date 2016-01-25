@@ -1,7 +1,7 @@
 # tomee-hello-world
 TomEE Hello Worlds with JAX-RS, JAXB, CDI, EJB, JPA, and JMS. 
 
-Follow the Setup Steps and Execution Steps below.
+Follow the Setup Steps below.
 
 *************** Setup Steps *************** 
 
@@ -19,4 +19,3 @@ NOTE:
 The EntityManagers in the DAOs (tomee-hello-world/src/main/java/com/tomee/helloworld/jpa/dao) are configured with H2 in memory database. 
 To configure the DAOS with MySQL, configure the EntityManagers with "helloworldDB" (tomee-hello-world/src/main/resources/persistence.xml). 
 You will need to install MySQL. Use "localuser", "password" as the username and password. If you use something different, update the username and password in tomee.xml.
-
