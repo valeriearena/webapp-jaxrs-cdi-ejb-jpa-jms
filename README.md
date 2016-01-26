@@ -44,10 +44,12 @@ or as JSON objects:
 
 or XML:
 
+```xml
 <helloworld>
         <salutation>hi xml</salutation>
         <technology>jaxrs</technology>
         <description>saying hi to jaxrs</description>
 </helloworld>
+```
 
 See the com.tomee.helloworld.jaxrs.JAXRSResource and com.tomee.helloworld.jaxb.JAXBHelloWorld.
