@@ -19,3 +19,35 @@ NOTE:
 The EntityManagers in the DAOs (tomee-hello-world/src/main/java/com/tomee/helloworld/jpa/dao) are configured with H2 in memory database. 
 To configure the DAOS with MySQL, configure the EntityManagers with "helloworldDB" (tomee-hello-world/src/main/resources/persistence.xml). 
 You will need to install MySQL. Use "localuser", "password" as the username and password. If you use something different, update the username and password in tomee.xml.
+
+*************** Execution Steps ***************
+
+Execution services via REST endpoints via curl or Google Chrome Advanced REST Client (https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo?hl=en-US)
+
+The REST resource is made up of several endpoints with the following naming convention:
+
+http://localhost:8080/demo/helloworld/[path]
+
+The endpoints are either GET or POST requests. Any parameters required in the request are submitted as path parameters:
+
+http://localhost:8080/demo/helloworld/[path]/{pathparam}
+
+or as JSON objects:
+
+{
+  "helloworld": {
+    "salutation": "hi jaxrs",
+    "technology": "jaxrs",
+    "description": "just saying hi to jaxrs"
+  }
+}
+
+or XML:
+
+<helloworld>
+        <salutation>hi xml</salutation>
+        <technology>jaxrs</technology>
+        <description>saying hi to jaxrs</description>
+</helloworld>
+
+See the com.tomee.helloworld.jaxrs.JAXRSResource and com.tomee.helloworld.jaxb.JAXBHelloWorld.
