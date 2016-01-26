@@ -41,9 +41,8 @@ or as JSON objects:
     "technology": "jaxrs",
     "description": "just saying hi to jaxrs"
   }
-```
 }
-
+```
 or XML:
 
 ```xml
