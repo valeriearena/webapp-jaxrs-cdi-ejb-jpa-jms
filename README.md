@@ -34,12 +34,14 @@ http://localhost:8080/demo/helloworld/[path]/{pathparam}
 
 or as JSON objects:
 
+```json
 {
   "helloworld": {
     "salutation": "hi jaxrs",
     "technology": "jaxrs",
     "description": "just saying hi to jaxrs"
   }
+```
 }
 
 or XML:
