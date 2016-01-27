@@ -22,7 +22,7 @@ You will need to install MySQL. Use "localuser", "password" as the username and 
 
 *************** Execution Steps ***************
 
-Execution services via REST endpoints via curl or Google Chrome Advanced REST Client (https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo?hl=en-US)
+Execute services via REST endpoints via curl or Google Chrome Advanced REST Client (https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo?hl=en-US)
 
 The REST resource is made up of several endpoints with the following naming convention:
 
