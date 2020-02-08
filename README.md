@@ -1,5 +1,4 @@
-# tomee-hello-world
-TomEE Hello Worlds with JAX-RS, JAXB, CDI, EJB, JPA, and JMS. 
+# TomEE Hello Worlds with JAX-RS, JAXB, CDI, EJB, JPA, and JMS. 
 
 Follow the Setup Steps below.
 
