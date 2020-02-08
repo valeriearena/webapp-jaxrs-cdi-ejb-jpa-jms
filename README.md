@@ -1,4 +1,4 @@
-# TomEE with JAX-RS, JAXB, CDI, EJB, JPA, and JMS. 
+# TomEE with JAX-RS, CDI, EJB, JPA, and JMS. 
 
 Follow the Setup Steps below.
 
