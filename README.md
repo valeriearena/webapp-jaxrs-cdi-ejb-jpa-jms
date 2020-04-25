@@ -1,4 +1,5 @@
-# Web app with JAX-RS, CDI, EJB, JPA, and JMS that can be deployed to TomEE (Enterprise Tomcat)
+# webapp-jaxrs-cdi-ejb-jpa-jms
+Web app with JAX-RS, CDI, EJB, JPA, and JMS that can be deployed to TomEE (Enterprise Tomcat)
 
 Follow the Setup Steps below.
 
